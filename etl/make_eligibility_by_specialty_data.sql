@@ -9,4 +9,6 @@ sum(case when individual_low_vol_stus_rsn_cd is null then 1 else 0 end) as eligi
 group by 1
 order by 2 desc
 limit 10
-)
+);
+
+grant all on public.eligibility_by_specialty to adeora, cson, achen, mpowell
