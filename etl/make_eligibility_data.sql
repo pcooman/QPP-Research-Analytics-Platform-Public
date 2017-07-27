@@ -8,8 +8,8 @@ SORTKEY (npi) AS (
   SELECT
     npi
     ,CASE WHEN (individual_low_vol_stus_rsn_cd='BOTH' OR individual_low_vol_stus_rsn_cd='CHRG')
-      THEN CAST(RANDOM() * 20000 + 5000 AS INT)
-      ELSE CAST(RANDOM() * 50000 + 35000 AS INT)
+      THEN CAST(RANDOM() * 25000 + 4999 AS INT)
+      ELSE CAST(RANDOM() * 50000 + 30000 AS INT)
       END AS total_charges
   FROM public.cms_eligibility);
 
@@ -20,8 +20,8 @@ SORTKEY (npi) AS (
   SELECT
     npi
     ,CASE WHEN (individual_low_vol_stus_rsn_cd='BOTH' OR individual_low_vol_stus_rsn_cd='BENE')
-      THEN CAST(RANDOM() * 90 + 5 AS INT)
-      ELSE CAST(RANDOM() * 350 + 125 AS INT)
+      THEN CAST(RANDOM() * 95 + 4 AS INT)
+      ELSE CAST(RANDOM() * 400 + 100 AS INT)
       END AS total_beneficiaries
   FROM public.cms_eligibility);
 
@@ -36,3 +36,8 @@ SORTKEY(npi) AS (
   LEFT JOIN public.cms_beneficiaries_per_provider
     USING (npi)
   );
+
+--Grant access to users
+GRANT ALL ON public.cms_eligibility_appended TO pcooman, adeora, cson, mpowell;
+GRANT ALL ON public.cms_charges_per_provider TO pcooman, adeora, cson, mpowell;
+GRANT ALL ON public.cms_beneficiaries_per_provider TO pcooman, adeora, cson, mpowell;
