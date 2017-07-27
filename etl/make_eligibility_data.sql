@@ -7,6 +7,7 @@ DISTKEY (npi)
 SORTKEY (npi) AS (
   SELECT
     npi
+    ,prvdr_org_name
     ,CASE WHEN (individual_low_vol_stus_rsn_cd='BOTH' OR individual_low_vol_stus_rsn_cd='CHRG')
       THEN CAST(RANDOM() * 25000 + 4999 AS INT)
       ELSE CAST(RANDOM() * 50000 + 30000 AS INT)
@@ -19,6 +20,7 @@ DISTKEY (npi)
 SORTKEY (npi) AS (
   SELECT
     npi
+    ,prvdr_org_name
     ,CASE WHEN (individual_low_vol_stus_rsn_cd='BOTH' OR individual_low_vol_stus_rsn_cd='BENE')
       THEN CAST(RANDOM() * 95 + 4 AS INT)
       ELSE CAST(RANDOM() * 400 + 100 AS INT)
@@ -32,9 +34,9 @@ SORTKEY(npi) AS (
   SELECT *
   FROM public.cms_eligibility
   LEFT JOIN public.cms_charges_per_provider
-    USING (npi)
+    USING (npi,prvdr_org_name)
   LEFT JOIN public.cms_beneficiaries_per_provider
-    USING (npi)
+    USING (npi,prvdr_org_name)
   );
 
 --Grant access to users
