@@ -36,7 +36,7 @@ SORTKEY(npi) AS (
   LEFT JOIN public.cms_charges_per_provider
     USING (npi,prvdr_org_name)
   LEFT JOIN public.cms_beneficiaries_per_provider
-    USING (npi)
+    USING (npi,prvdr_org_name)
   );
 
 --Grant access to users
