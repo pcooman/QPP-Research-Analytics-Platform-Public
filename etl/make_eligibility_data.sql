@@ -32,12 +32,18 @@ CREATE TABLE public.cms_eligibility_appended
 DISTKEY(npi)
 SORTKEY(npi) AS (
   SELECT *
-  FROM public.cms_eligibility
-  LEFT JOIN public.cms_charges_per_provider
-    USING (npi,prvdr_org_name)
-  LEFT JOIN public.cms_beneficiaries_per_provider
-    USING (npi,prvdr_org_name)
-  );
+  FROM public.cms_eligibility as a
+  LEFT JOIN public.cms_charges_per_provider as b
+  ON a.npi = b.npi and
+  a.prvdr_org_name = b.prvdr_org_name 
+  LEFT JOIN public.cms_beneficiaries_per_provider as c
+  ON a.npi = c.npi and 
+  a.prvdr_org_name = c.prvdr_org_name
+  WHERE b.npi is not null and
+  b.prvdr_org_name is not null and
+  c.npi is not null and
+  c.prvdr_org_name is not null
+);
 
 --Grant access to users
 GRANT ALL ON public.cms_eligibility_appended TO pcooman, adeora, cson, mpowell;
