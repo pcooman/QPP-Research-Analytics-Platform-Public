@@ -11,4 +11,4 @@ order by 2 desc
 limit 10
 );
 
-grant all on public.eligibility_by_specialty to adeora, cson, achen, mpowell
+grant all on public.eligibility_by_specialty to adeora, cson, achen, mpowell;
