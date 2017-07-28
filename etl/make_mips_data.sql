@@ -9,8 +9,8 @@ DISTKEY(id)
 SORTKEY(id) AS (
   SELECT
     id
-    ,CAST(RANDOM() * 70 AS INT) AS quality
-    ,CAST(RANDOM() * 100 AS INT) AS cost
+    ,CAST(RANDOM() * 30 + 60 AS INT) AS quality
+    ,CAST(RANDOM() * 40 AS INT) AS cost
     ,CAST(RANDOM() * 40 AS INT) AS improvement_activities
     ,CAST(RANDOM() * 155 AS INT) AS advancing_care_info
   FROM public.cms_eligibility_id
