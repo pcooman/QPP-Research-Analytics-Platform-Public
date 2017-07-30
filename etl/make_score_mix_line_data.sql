@@ -20,4 +20,4 @@ create table public.cms_eligibility_mips_by_year as
   )
 );
 
-grant all on table public.cms_eligibility_mips_by_year to adeora, cson, achen
+grant all on table public.cms_eligibility_mips_by_year to adeora, cson, achen;
